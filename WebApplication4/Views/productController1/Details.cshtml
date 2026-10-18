@@ -1,0 +1,103 @@
+
+@model WebApplication4.Models.product
+
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #fff;
+        color: #222;
+    }
+
+    .edit-container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 30px;
+        border: 1px solid #eee;
+        border-radius: 8px;
+    }
+
+    h2 {
+        font-size: 30px;
+        margin-bottom: 25px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+
+    .form-control {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 15px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+        font-size: 15px;
+    }
+
+    .btn-save {
+        background: #198754;
+    }
+
+    .btn-back {
+        background: #333;
+        margin-left: 8px;
+    }
+
+    .btn:hover {
+        opacity: 0.8;
+    }
+</style>
+
+<div class="edit-container">
+
+    <h2>Edit Product</h2>
+
+    <form asp-controller="productController1" asp-action="Edit" method="post">
+
+        <div class="form-group">
+            <label asp-for="id">ID</label>
+            <input asp-for="id" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Name">Name</label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Price">Price</label>
+            <input asp-for="Price" class="form-control" type="number" step="0.01" />
+        </div>
+
+        <button type="submit" class="btn btn-save">Save Changes</button>
+
+        <a asp-controller="productController1"
+           asp-action="Index"
+           class="btn btn-back">
+            Back to List
+        </a>
+
+    </form>
+
+</div>
