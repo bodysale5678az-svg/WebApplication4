@@ -3,10 +3,10 @@ using WebApplication4.Models.service;
 
 namespace WebApplication4.Controllers
 {
-    public class productController1 : Controller
+    public class productController : Controller
     {
         private Iproductservice _productService ;
-        public productController1(Iproductservice productService)
+        public productController(Iproductservice productService)
         {
            this._productService = productService;
         }
