@@ -1,47 +1,96 @@
 @model WebApplication4.Models.product
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Product";
 }
 
-<h1>Edit</h1>
+<style>
+    .edit-container {
+        max-width: 650px;
+        margin: 40px auto;
+        padding: 30px;
+        background: #fff;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    }
 
-<h4>product</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
-            <div class="form-group">
-                <label asp-for="id" class="control-label"></label>
-                <input asp-for="id" class="form-control" />
-                <span asp-validation-for="id" class="text-danger"></span>
-            </div>
+    .form-group {
+        margin-bottom: 22px;
+    }
 
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
 
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
+    .form-control {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 15px;
+    }
 
-            <div class="form-group mt-2">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+    .form-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 30px;
+    }
+
+    .btn-save {
+        background: #ffc107;
+        color: #000;
+        border: none;
+        padding: 12px 22px;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .btn-back {
+        background: #eee;
+        color: #222;
+        padding: 12px 22px;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+    .validation {
+        color: #dc3545;
+        font-size: 13px;
+    }
+</style>
+
+<div class="edit-container">
+    <h2>Edit Product</h2>
+    <p class="text-muted mb-4">Update the product details below.</p>
+
+    <form asp-controller="product" asp-action="Edit" method="post">
+        <div asp-validation-summary="ModelOnly" class="validation"></div>
+
+        <div class="form-group">
+            <label asp-for="id">Product ID</label>
+            <input asp-for="id" class="form-control" readonly />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Name">Product Name</label>
+            <input asp-for="Name" class="form-control" required />
+            <span asp-validation-for="Name" class="validation"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Price">Product Price (EGP)</label>
+            <input asp-for="Price" class="form-control" type="number" step="0.01" min="0" required />
+            <span asp-validation-for="Price" class="validation"></span>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn-save">Save Changes</button>
+            <a asp-controller="product" asp-action="Index" class="btn-back">Back to List</a>
+        </div>
+    </form>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
